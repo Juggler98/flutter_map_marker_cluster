@@ -596,7 +596,7 @@ class _MarkerClusterLayerState extends State<MarkerClusterLayer>
       // This is the performance critical hot path recursed on every map event!
 
       // Cull markers/clusters that are not on screen.
-      if (widget.mapCamera.pixelBounds.contains(
+      if (!widget.mapCamera.pixelBounds.overlaps(
         layer.pixelBounds(widget.mapCamera),
       )) {
         return;
