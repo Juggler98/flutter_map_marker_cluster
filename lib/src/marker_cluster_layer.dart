@@ -222,9 +222,12 @@ class _MarkerClusterLayerState extends State<MarkerClusterLayer>
                   milliseconds: popupOptions.timeToShowPopupOnHover >= 0
                       ? popupOptions.timeToShowPopupOnHover
                       : 0), () {
+              if (!mounted) return;
+              final popupState = PopupState.maybeOf(context, listen: false);
+              if (popupState == null) return;
               popupOptions.markerTapBehavior.apply(
                 PopupSpec.wrap(marker.marker),
-                PopupState.maybeOf(context, listen: false)!,
+                popupState,
                 popupOptions.popupController,
               );
             })
@@ -541,7 +544,7 @@ class _MarkerClusterLayerState extends State<MarkerClusterLayer>
             cluster: cluster,
             marker: marker,
             point: points[i]!,
-            curve: widget.options.animationsOptions.sipderifyCurve,
+            curve: widget.options.animationsOptions.spiderifyCurve,
           ),
         ),
       );
